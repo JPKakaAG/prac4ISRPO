@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using prac4ISRPO;
 
 
 
@@ -15,8 +16,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Color startColor;
-        private Color endColor;
+        private System.Windows.Media.Color startColor;
+        private System.Windows.Media.Color endColor;
 
         public MainWindow()
         {
@@ -70,7 +71,7 @@ namespace WpfApp1
             var color = ShowColorDialog(startColor);
             if (color != null)
             {
-                startColor = (Color)color;
+                startColor = (System.Windows.Media.Color)color;
                 StartColorLabel.Content = startColor.ToString();
             }
         }
@@ -80,12 +81,12 @@ namespace WpfApp1
             var color = ShowColorDialog(endColor);
             if (color != null)
             {
-                endColor = (Color)color;
+                endColor = (System.Windows.Media.Color)color;
                 EndColorLabel.Content = endColor.ToString();
             }
         }
 
-        private System.Windows.Media.Color? ShowColorDialog(Color initialColor)
+        private System.Windows.Media.Color? ShowColorDialog(System.Windows.Media.Color initialColor)
         {
             var colorDialog = new System.Windows.Forms.ColorDialog
             {
@@ -114,7 +115,7 @@ namespace WpfApp1
 
                     case ComboBoxItem item when item.Content.ToString() == "Кривая Коха":
                         KochCurve kochCurve = new KochCurve();
-                        kochCurve.Draw(FractalCanvas, new Point(100, 300), new Point(700, 300), iterations);
+                        kochCurve.Draw(FractalCanvas, new System.Windows.Point(100, 300), new System.Windows.Point(700, 300), iterations);
                         break;
 
                     case ComboBoxItem item when item.Content.ToString() == "Ковер Серпинского":
@@ -124,7 +125,7 @@ namespace WpfApp1
 
                     case ComboBoxItem item when item.Content.ToString() == "Треугольник Серпинского":
                         SierpinskiTriangle triangle = new SierpinskiTriangle();
-                        triangle.Draw(FractalCanvas, new Point(400, 50), new Point(50, 600), new Point(750, 600), iterations);
+                        triangle.Draw(FractalCanvas, new System.Windows.Point(400, 50), new System.Windows.Point(50, 600), new System.Windows.Point(750, 600), iterations);
                         break;
 
                     case ComboBoxItem item when item.Content.ToString() == "Множество Кантора":
@@ -138,7 +139,7 @@ namespace WpfApp1
             }
             else
             {
-                MessageBox.Show("Введите корректное количество итераций.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Введите корректное количество итераций.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
